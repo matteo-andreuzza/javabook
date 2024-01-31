@@ -1,5 +1,7 @@
 # javabook
- basi di Java 
+Le basi della programmazione in generale ed in linguaggio [Java](https://www.java.com/it/).
+
+> **ATTENZIONE**: Il _Javabook_ non è ancora completo. In qualche giorno dovrebbe arrivare la versione definitiva. Se cerchi concetti di programmazione non strettamente legati a Java, puoi usufruire del [_cppbook_](https://matteo-andreuzza.github.io/cpp-book/).
 # le basi di Java
 
 ## Premesse iniziali:
@@ -16,7 +18,10 @@ Prima di addentrarci nel linguaggio Java è necessario fare delle premesse:
  ```
 basterà solo inserire il codice all'interno.
 - Questa guida NON è sostituibile per NESSUN MOTIVO ad uno studio dettagliato accompagnato da una buona dose di esercizio
-- 
+- è utile anche se non indispensabile avere un editor di codice/IDE per programmare. Consigliamo:
+	- [onlinegdb](https://www.onlinegdb.com/), online, senza installare nulla, basico. Consigliata la **registrazione** con il pulsante singup/login.  <=_**fortemente consigliato**_
+	- [IntelliJ IDEA](https://www.jetbrains.com/idea/), più avanzato, pesante ma pronto all'uso.
+	- [VisualStudio Code](https://visualstudio.microsoft.com/it/#vscode-section), fortemente sconsigliato per gli utenti alle prime armi, è necessario saperlo configurare ed avere dunque una buona conoscenza del software. 
 ## Variabili e costanti
 Per contenere dei valori utilizziamo variabili e costanti:
 - variabili per contenere un valore che **può variare**
