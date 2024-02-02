@@ -1,7 +1,32 @@
 # javabook
 Le basi della programmazione in generale ed in linguaggio [Java](https://www.java.com/it/).
 
-> **ATTENZIONE**: Il _Javabook_ non è ancora completo. In qualche giorno dovrebbe arrivare la versione definitiva. Se cerchi concetti di programmazione non strettamente legati a Java, puoi usufruire del [_cppbook_](https://matteo-andreuzza.github.io/cpp-book/).
+> **ATTENZIONE**: Il _Javabook_ non è ancora completo per tutto il linguaggi ma è utilizzabile. Se cerchi concetti di programmazione non strettamente legati a Java, puoi usufruire del [_cppbook_](https://matteo-andreuzza.github.io/cpp-book/).
+
+- [javabook](#javabook)
+- [le basi di Java](#le-basi-di-java)
+   * [Premesse iniziali:](#premesse-iniziali)
+   * [Variabili e costanti](#variabili-e-costanti)
+   * [Funzioni di base di Input/Output:](#funzioni-di-base-di-inputoutput)
+   * [Operazioni matematiche:](#operazioni-matematiche)
+- [Costrutti in Java (1)](#costrutti-in-java-1)
+   * [Operatori di selezione](#operatori-di-selezione)
+      + [Selezione semplice](#selezione-semplice)
+      + [Selezione annidata](#selezione-annidata)
+   * [Gli operatori logici](#gli-operatori-logici)
+   * [Lo switch case](#lo-switch-case)
+- [Cicli in Java](#cicli-in-java)
+- [Ciclo While](#ciclo-while)
+   * [Ciclo Do - While](#ciclo-do-while)
+   * [Ciclo For](#ciclo-for)
+   * [Istruzioni utili nei cicli](#istruzioni-utili-nei-cicli)
+      + [istruzione break](#istruzione-break)
+      + [Istruzione continue](#istruzione-continue)
+- [Arrays in Java](#arrays-in-java)
+   * [Arrays Monodimensionali](#arrays-monodimensionali)
+      + [Arrays nel codice:](#arrays-nel-codice)
+      + [Usare gli arrays:](#usare-gli-arrays)
+
 # le basi di Java
 
 ## Premesse iniziali:
@@ -243,7 +268,7 @@ if(pesoMele < 7 || pesoMele > 10){
 
 ## Lo switch case
 
-Nel linguaggio di programmazione Java, lo statement `switch case` è una costruzione che consente di selezionare una delle varie alternative basandosi sul valore di una singola espressione, senza utilizzare molteplici `if`. È particolarmente utile quando si devono prendere decisioni basate su un numero finito di possibili valori o casi.
+Nel linguaggio di programmazione Java, lo statement `switch` è una costruzione che consente di selezionare una delle varie alternative basandosi sul valore di una singola espressione, senza utilizzare molteplici `if`. È particolarmente utile quando si devono prendere decisioni basate su un numero finito di possibili valori o casi.
 
 La sintassi generale dello statement `switch case` è la seguente:
 
@@ -304,3 +329,318 @@ Il numero è 2
 
 È importante notare che il tipo di dato dell’espressione utilizzata nello statement `switch case` può essere qualsiasi tipo intero o carattere, come `int`, `char` o `enum`. Inoltre, i casi possono essere specificati in qualsiasi ordine e possono anche essere valori costanti o variabili. 
 È inoltre possibile includere più istruzioni all’interno di ciascun caso. 
+
+# Cicli in Java
+I cicli in programmazione sono dei costrutti che permettono di ripetere una serie di istruzioni più volte.
+
+# Ciclo While
+Il ciclo While si presenta come il ciclo più semplice. Il suo scopo è quello di ripere un blocco di codice se una determinata condizione è vera. Quando questa diventerà falsa, il blocco di istruzioni non verrà più eseguito, ed il programma uscirà dal ciclo. 
+> Usiamo quindi il ciclo while quando NON sappiamo (o meglio, quando non viene specificato) il numero di volte che verranno eseguite le istruzioni.
+
+>_fino a quando questo è vero_ [condizione]
+   _esegui [e cosa succede]
+
+Vediamo quindi come inserire nel codice un ciclo while e la sua sintassi:
+
+``` cpp
+while(condizione){
+	istruzione1;
+	istruzione2;
+	ecc;
+}
+```
+
+Facciamo un esempio pratico:
+
+``` java
+int a = 0;
+
+while(a < 10){
+	System.out.println("Il ciclo è in funzione. Giro numero " + a);
+	a++;
+}
+```
+
+output:
+
+``` shell
+Il ciclo è in funzione. Giro numero 0
+Il ciclo è in funzione. Giro numero 1
+Il ciclo è in funzione. Giro numero 2
+Il ciclo è in funzione. Giro numero 3
+Il ciclo è in funzione. Giro numero 4
+Il ciclo è in funzione. Giro numero 5
+Il ciclo è in funzione. Giro numero 6
+Il ciclo è in funzione. Giro numero 7
+Il ciclo è in funzione. Giro numero 8
+Il ciclo è in funzione. Giro numero 9
+```
+
+Notiamo che dopo aver completato il decimo ciclo, il programma è uscito dal ciclo, non eseguendo più le istruzioni contenute nelle parentesi graffe.
+Per verificare questo avvenimento, inseriamo un println dopo il ciclo, per vedere quando il ciclo sarà terminato.
+``` cpp
+int a = 0;
+
+while(a < 10){
+	System.out.println("Il ciclo è in funzione. Giro numero " + a);
+	a++;
+}
+System.out.println("Il programma è uscito dal ciclo");
+```
+
+output:
+
+``` shell
+Il ciclo è in funzione. Giro numero 0
+Il ciclo è in funzione. Giro numero 1
+Il ciclo è in funzione. Giro numero 2
+Il ciclo è in funzione. Giro numero 3
+Il ciclo è in funzione. Giro numero 4
+Il ciclo è in funzione. Giro numero 5
+Il ciclo è in funzione. Giro numero 6
+Il ciclo è in funzione. Giro numero 7
+Il ciclo è in funzione. Giro numero 8
+Il ciclo è in funzione. Giro numero 9
+Il programma è uscito dal ciclo
+```
+
+Visto? Appena il programma esce dal ciclo, esso esegue le istruzioni che compaiono successivamente.
+ 
+ >**NOTA BENE | valore della variabile:**
+ >	Come puoi vedere, il valore della variabile nell'ultimo giro è 9, non 10, eppure il ciclo ha compiuto 10 giri.
+ >	Questo è una conseguenza del fatto che in informatica i numeri partono dallo 0, e non da 1.
+ >	Questo ci tornerà molto utile più avanti.
+ 
+  >**NOTA BENE | incremento di una variabile**
+ >	Come puoi notare, l'ultima istruzione all'interno del ciclo è `a++` .
+ >	 `a++` è l'equivalente di scrivere  `a = a+1`  
+
+## Ciclo Do - While
+Il ciclo do - While è un'evoluzione del ciclo While. L'unica cosa che cambia da quest'ultimo infatti, è che il blocco di istruzioni da eseguire, **viene eseguito una volta**, poi viene verificata la condizione e allora verrà eseguito di nuovo fino a quando la condizione non diventerà falsa.
+``` java
+do {  
+ //blocco di codice 
+ }  
+while (condizione);
+```
+esempio:
+> Chiedere in input all’utente un numero intero compreso nell’intervallo[1,7], memorizzalo nella variabile number, iterando questa richiesta fintanto che il numero inserito dall’utente non è corretto
+
+``` java
+Scanner input = new Scanner (System.in);
+int number;
+do{
+	System.out.println("Caro utente, inserisci il numero [1,7]");
+	number = input.nextInt();
+}while (number < 1 || number > 7);
+``` 
+## Ciclo For
+Il ciclo for è un ciclo più complesso del ciclo while, che permette di ripetere un blocco di istruzioni **un determinato numero di volte**. Come per il While, per eseguire il blocco di codice dovrà essere soddisfatta una condizione.
+>_fino a quando questo è vero_ [condizione]
+   _esegui [e cosa succede]
+
+Vediamo quindi come inserire nel codice un ciclo for e la sua sintassi:
+
+``` java
+for(<inizializzazione>; <condizione>; <espressione_iterativa>){
+	istruzione1;
+	istruzione2;
+	ecc;
+}
+```
+
+Come possiamo notare, tra le parentesi non è presente la sola condizione che dev'essere soddisfatta, ma anche un'**istruzione di inizializzazione e un'espressione iterativa**.
+Queste sono utili per utilizzare il ciclo for con Vettori, matrici, e altro che non abbiamo ancora trattato.
+Ci limiteremo quindi ad inserire nel parametro di inizializzazione, la dichiarazione di una variabile contatore, e nell'espressione iterativa, l'incremento della suddetta variabile. 
+In sostanza:
+- L'**inizializzazione** prevede la **dichiarazione di una variabile** che è utilizzabile nel solo ciclo for.
+- La **condizione** è, come nel while, quella che determina la fine dell'iterazione del ciclo
+- L'**espressione iterativa** è un'istruzione di qualsiasi genere, che viene eseguita **ad ogni iterazione del ciclo**. 
+
+Facciamo un esempio pratico:
+
+``` java
+int acc = 0;
+for (int i = 0; i < 10; i ++){
+    System.out.println("Questo è il giro numero" + i);
+    acc += i;
+}
+```
+
+output:
+
+``` shell
+Questo è il giro numero0
+Questo è il giro numero1
+Questo è il giro numero2
+Questo è il giro numero3
+Questo è il giro numero4
+Questo è il giro numero5
+Questo è il giro numero6
+Questo è il giro numero7
+Questo è il giro numero8
+Questo è il giro numero9
+
+```
+
+Il ciclo stampa a schermo 10 volte la scritta, scrivendo alla fine il numero del giro.
+> Chiariamo che questo è un uso estremamente riduttivo del ciclo for, tanto che questo risultato si potrebbe ottenere anche con un ciclo while.
+> Ci limitiamo però a questi esempi, dato che un uso intensivo del ciclo for verrà fatto più avanti.
+
+**Esempio:**
+Dato un numero, stampare a video 5 righe dove ogni riga ha un numero di  asterischi pari ai primi 5 multipli in successione 
+	Esempio: Numero generato 3:
+```shell
+1-*** 
+2-****** 
+3-********* 
+4-************ 
+5-*************** 
+```
+
+```java
+int number = 3;
+	for(int i = 1; i <= 5; i++){//scorre le righe
+			System.out.print(i + "-"); //stampa i numeri di riga
+		for(int k = 0; k < (i * number); k++){//scorre il numero di * per riga
+			System.out.print("*"); // gli stampa
+		}
+	   System.out.println(" "); // va a capo a fine di ogni riga
+	}
+```
+
+> Ci limitiamo però a questi esempi, dato che un uso intensivo del ciclo for verrà fatto più avanti.
+
+## Istruzioni utili nei cicli
+
+### istruzione break
+l'istruzione break serve a fermare un ciclo in un determinato momento. Questo può essere utile per terminare il ciclo quando una condizione è soddisfatta.
+Esempio:
+```cpp
+for (int i = 1; i < 10; i++)
+{
+	if (i == 4) {
+		break;
+	}
+	System.out.println(i);
+}
+```
+output:
+```shell
+1
+2
+3
+```
+il ciclo si ferma quando ```i``` diventa 4
+
+### Istruzione continue
+L'istruzione ```continue``` salta un'iterazione del ciclo. Più specificatamente:
+
+> L'istruzione `continue` ha come effetto l'interruzione dell'iterazione corrente. Il controllo di flusso rimane confinato all'interno del ciclo, ma viene reindirizzato all'iterazione successiva in conseguenza di una circostanza inattesa che invalida o rende superflua l'esecuzione di tale iterazione.
+
+esempio:
+```cpp
+int i = 0;
+while (i < 10) {
+  if (i == 4) {
+    i++;
+    continue;
+  }
+  System.out.println(i);
+  i++;
+}
+```
+
+output
+```shell
+0
+1
+2
+3  # <= manca il 4
+5
+6
+7
+8
+9
+```
+Possiamo notare che quando ```i``` è uguale a 4, la corrente iterazione del ciclo viene interrotta.
+
+# Arrays in Java
+
+In Java, come in ogni linguaggio di programmazione che li supporta, gli arrays servono ad immagazzinare più elementi all'interno di una variabile. 
+## Arrays Monodimensionali
+Detti anche vettori, sono caratterizzati da:
+- Il tipo di elementi che deve contenere
+- La lunghezza dell'array
+- Gli elementi che contiene
+- Gli indici degli elementi
+Questa rappresentazione ci aiuta a capire la struttura dell'array
+![[Array1.jpg]]
+Un array è costituito da delle "caselle". Queste devono essere tante quante la lunghezza dell'array (nell'immagine: Array lenght). Ad ogni "casella" è assegnato un numero che la rappresenta, questo numero è chiamato indice.
+> **Nota bene**
+> Gli indici delle "caselle" partono da 0. Questo significa che la prima casella avrà indice 0, la seconda 1 e così via. 
+
+Le caselle possono essere riempite con degli elementi, a patto che questi elementi siano **tutti dello stesso tipo**, specificato nella creazione dell'array.
+
+### Arrays nel codice:
+Come per le variabili, anche gli arrays vanno inizializzati:
+La struttura per inizializzare un vettore è la seguente:
+```java
+tipo[] nome = new tipo[lunghezza];
+```
+
+Per inizializzare un vettore di 3 elementi:
+```java
+int[] numbers1 = new int[3]; // il valore standard è 0
+```
+>Nota bene:
+>in un array gli elementi sono separati da una virgola e contenuti dentro parentesi graffe.
+
+Opzionale: 
+Posso scriverlo anche così: (array literal)
+```java
+int[] numbers2 = { 1, 2, 3 };
+```
+ oppure: (array inizializzato)
+ ```java
+int[] numbers3 = new int[] { 1, 2, 3 };
+```
+
+### Usare gli arrays:
+
+Possiamo utilizzare gli array in svariati modi. Per ricavare un valore in una determinata posizione in un array usiamo la sintassi:
+```java
+int[] numeri = {1, 2, 3, 4, 5};
+System.out.println(numeri[1]);
+```
+output:
+```shell
+2
+```
+
+Vediamo per esempio come stampare tutti i valori di un array:
+```java
+int[] numeri = {1, 2, 3, 4, 5};
+for(int i = 0; i < numeri.length; i++){
+	System.out.println(numeri[i]);
+}
+```
+Notare come il ciclo for risulta molto utile in questi casi, dato che ci permette di eseguire determinate operazioni su un array un determinato numero di volte. Sapendo la dimensione dell’array (che può essere ottenuta con `array.length`), possiamo utilizzare tutti gli elementi. La sintassi vista qui sopra è utile in diversi casi.
+
+Un altro algoritmo utile può invertire tutti gli elementi di un array:
+
+```java
+// Inverti l'array
+for (int i = 0; i < numeri.length / 2; i++)
+{
+	int temp = numeri[i];
+	numeri[i] = numeri[numeri.length - i - 1];
+	numeri[numeri.length - i - 1] = temp;
+}
+System.out.println("STAMPA ARRAY GIRATO");
+// Stampa l'array
+for (int i = 0; i < numeri.length; i++)
+{
+	System.out.print(numeri[i] + ", ");
+}
+```
