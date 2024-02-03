@@ -1,7 +1,7 @@
 # javabook
 Le basi della programmazione in generale ed in linguaggio [Java](https://www.java.com/it/).
 
-> **ATTENZIONE**: Il _Javabook_ non è ancora completo per tutto il linguaggi ma è utilizzabile. Se cerchi concetti di programmazione non strettamente legati a Java, puoi usufruire del [_cppbook_](https://matteo-andreuzza.github.io/cpp-book/).
+> **ATTENZIONE**: Il _Javabook_ non è ancora completo per tutto il linguaggi ma è utilizzabile. Se cerchi concetti di programmazione non strettamente legati a Java, puoi usufruire del [_javabook_](https://matteo-andreuzza.github.io/java-book/).
 
 - [javabook](#javabook)
 - [le basi di Java](#le-basi-di-java)
@@ -74,20 +74,43 @@ Scrivo, in ordine : datatype, nome della variabile, contenuto.
 ATTENZIONE:
 Dopo aver **Dichiarato** una variabile, quando la si va ad utilizzare, non si deve inserire il datatype!
 ```java
-int ciao = 0;
-int bella = 2
-bella  = ciao;
+int cocacola = 1;
+int acqua = 0;
+
+//imposto le variabili su valori differenti:
+cocacola = 2;
+acqua = 3;
 ```
- 
+
+Spiegherò ora un concetto che non tutte le persone che iniziano a programmare capiscono:
+Bobbiamo immaginarci le variabili come dei veri e propri contenitori, quindi per effettuare operazioni tra di essere dobbiamo avere alcuni accorgimenti.
+Facciamo dunque un esempio con due bicchieri, uno contenente acqua e l'altro CocaCola:
+- Voglio **scambiare il contenuto dei due bicchieri**, quindi:
+All'inizio avrò due variabili, ovvero i due bicchieri pieni:
+```java
+String bicchiere1 = "Cocacola";
+String bibcchiere2 = "Acqua";
+```
+Per scambiare i valori, quindi i contenuti dei due bicchieri, **dovrò utilizzare un terzo bicchiere**, ovvero una nuova variabile
+```java
+String temporaneo = "" //dichiaro una variabile temporanea dello stesso tipo
+```
+Quindi svuoterò un bicchiere in quello temporaneo, lo riempirò con il contenuto dell'altro bicchiere e quest'ultimo lo riempirò a sua volta con il contenuto di quello temporaneo.
+```java
+temporaneo = bicchiere1; //svoto 1 in temporaneo: 1 vuoto, 2 pieno
+bicchiere1 = bicchiere2; //svuoto 2 in 1: 1 pieno, 2 vuoto
+bicchiere2 = temporaneo; //svuoto temporaneo in 2: 1 pieno, 2 pieno
+```
+
 ## Funzioni di base di Input/Output:
-Per comunicare con l'utente, il programma utilizza la finestra della console dove viene eseguito il programma. Per interagire con l'utente esistono due funzioni, per scrivere sulla finestra e per leggere un dato inserito dall'utente.
+Per comunicare con l'utente, il programma utilizza la console dove viene eseguito il programma. Per interagire con l'utente esistono due funzioni, per scrivere sulla finestra e per leggere un dato inserito dall'utente.
 
 **Scrivere sulla console (Stampa a schermo)**
 Utilizziamo il metodo `println()` della classe `System` per stampare un messaggio a schermo:
 ```java
   System.out.println("Hello World");
 ```
-La **concatenazione** si effettua tramite il carattere + e serve a unire più stringhe. 
+La **concatenazione** si effettua tramite il carattere + e serve ad unire più stringhe. 
 ```java
   System.out.println("Hello" + "World");
 ```
@@ -96,38 +119,116 @@ La **concatenazione** si effettua tramite il carattere + e serve a unire più st
 Utilizziamo il metodo `Scanner` per leggere ciò che digita l'utente. Il contenuto verrà memorizzato in una variabile.
 Per prima cosa importiamo all'inizio del programma Scanner
 
-```cpp
+```java
 import java.util.Scanner;
 ```
 
 Quindi all'interno del programma:
-```cpp
-System.out.println("inserire valore");
-Scanner in = new Scanner(System.in);  // new perchè in diventa un oggetto dalla classe scanner
-int n;
-n = in.nextInt();
+```java
+System.out.println("inserire valore numerico intero");
+Scanner input = new Scanner(System.in);// creo input, che sarà il mio scanner
+int n; //creo una variabile qualsiasi di tipo int
+n = input.nextInt(); //memorizzo nella variabile quello che viene scritto da tastiera
 ```
+Il codice qui sopra funziona però solo quando devo leggere da tastiera un **numero intero** `int`, in caso volessi leggere una stringa dovrò:
+- Cambiare il tipo della variabile dove memorizzo il dato in questo caso da `int` a `String`.
+- Cambiare il _metodo_ che utilizzo, infatti al posto di `nextInt()`,  il quale, come dice il nome, legge un numero intero (int, appunto), dovrò utilizzare `nextLine()
+```java
+System.out.println("inserire testo");
+Scanner input = new Scanner(System.in);// creo input, che sarà il mio scanner
+String n; //creo una variabile qualsiasi di tipo Stringa
+n = input.nextLine(); //memorizzo nella variabile quello che viene scritto da tastiera
+```
+In particolare nella tabella qui sotto ci sono gli altri metodi per leggere altri tipi di dati.
 
+|Metodo |Descrizione |
+|---|---|
+|`nextBoolean()`|Reads a `boolean` value from the user|
+|`nextByte()`|Reads a `byte` value from the user|
+|`nextDouble()`|Reads a `double` value from the user|
+|`nextFloat()`|Reads a `float` value from the user|
+|`nextInt()`|Reads a `int` value from the user|
+|`nextLine()`|Reads a `String` value from the user|
+|`nextLong()`|Reads a `long` value from the user|
+|`nextShort()`|Reads a `short` value from the user|
+Di più [qui](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html).
 ## Operazioni matematiche:
 Possiamo compiere semplici operazioni matematiche sfruttando gli operatori presenti in java.
 ```java
 float operazione = (34.5+1552) - ((568 * 645) / 4);
 ```
 
+## Pensare binario, pensare come il programma.
+Quando programmiamo, è necessario capire come esegue le operazioni il computer. Per progettare i nostri programmi è utile pensare capire come vengono valutate determinate condizioni.
+
+Facciamo un esempio di espressione:
+$$
+5 = 5
+$$
+Questa condizione **è vera o falsa?**
+La risposta è semplice, **è vera**, in quanto 5 è sempre uguale a 5.
+Mentre questa espressione:
+$$
+5 ≠ 5
+$$
+è falsa, dato che come abbiamo detto prima 5 = 5.
+
+Ricordando un po' di matematica, possiamo definire vere delle espressioni anche al solo verificarsi di alcune condizioni, come:
+$$
+3x>6
+$$
+Questa infatti è vera **solo se**:
+$$
+x>2
+$$
+Ragioniamo un po':
+Se:
+$$
+x>2
+$$
+Allora:
+$$
+3x>6
+$$
+è vera, altrimenti per:
+$$
+x≤2
+$$
+è falsa.
+
+Mettendo insieme le cose possiamo dire che:
+E' sempre vera la seguente condizione:
+$$
+3x>6 ⇔ x>2
+$$
+## Gli operatori logici
+Come in logica e matematica, anche nell'informatica esistono degli operatori logici. 
+- Or (o questo o quello)
+- And (e)
+- Not (non)
+- Uguale 
+I loro corrispettivi in linguaggio di programmazione:
+- ```||```
+- ```&&```
+- ```!=```
+- ```==```
+> **NOTA BENE ==IMPORTANTE==**
+> Il doppio uguale (= =) significa UGUALIANZA 
+> Un uguale singolo (=) significa ASSEGNAZIONE DI UN VALORE
+
+
+
 # Costrutti in Java (1)
 
 ## Operatori di selezione
 ### Selezione semplice
-Possiamo effettuare delle operazioni di **selezione** di dati o istruzioni. Parangonandola al linguaggio comune, la selezione è l'equivalente di espressioni del tipo:
+Possiamo effettuare delle operazioni di **selezione** di dati o istruzioni. Paragonandola al linguaggio comune, la selezione è l'equivalente di espressioni del tipo:
 >_Se accade questo_ [condizione]
    _allora_ [e cosa succede]
    _altrimenti_ [e cosa succede altrimenti]
    
 **esempio 1:**
-_Se bevi acido cloridrico allora potresti stare male, altrimenti non starai male._
-**esempio 2:**
-_Se ti metti questo vestito, allora sei bellissima, altrimenti sei bella comunque, anche senza, rimarrai la donna più bella di questo mondo._
-
+_Se bevi acido cloridrico allora starai male, altrimenti non starai male._
 Paragoniamo ora il primo esempio ad un codice di programmazione:
 
 <div style="width: 100%;">
@@ -150,7 +251,7 @@ Paragoniamo ora il primo esempio ad un codice di programmazione:
 </div>
 Vediamo quindi come costruire un costrutto di selezione:
 
-```cpp
+```java
 if(condizione){
 	// blocco di codice da eseguire se la condizione è vera
 }
@@ -158,7 +259,8 @@ else{
 	// blocco di codice da eseguire se la condizione risulta falsa
 }
 ```
-La prima parte contiene la parola chiave ```if``` che ordina al computer di **verificare** le condizioni presenti all'interno delle parentesi ed eseguire blocco di codice contenuto nelle parentesi graffe in caso le condizioni siano vere.
+
+La prima parte contiene la parola chiave ```if``` che ordina al computer di **verificare** la condizione all'interno delle parentesi ed eseguire blocco di codice contenuto nelle parentesi graffe in caso questa fosse vera.
 La seconda parte contiene la parola chiave ```else``` che ordina al computer di eseguire il blocco di codice contenuto nelle parentesi graffe se la condizione risulta falsa.
 
 Per comprendere meglio, analizziamo il funzionamento del costrutto:
@@ -210,7 +312,7 @@ Paragoniamo ancora una volta con un linguaggio di programmazione:
 </div>
 Vediamo quindi come costruire un costrutto di selezione annidata:
 
-``` cpp
+``` java
 if(condizione){
 	if(condizione2){
 		// blocco di codice da eseguire se la condizione2 è vera
@@ -226,7 +328,7 @@ else{
 ```
 Un secondo if si può inserire anche nell'else:
 
-``` cpp
+``` java
 if(condizione){
 	// blocco di codice da eseguire se la condizione è vera
 }
@@ -241,30 +343,6 @@ else{
 }
 ```
 
-## Gli operatori logici
-Come in logica e matematica, anche nell'informatica esistono degli operatori logici. 
-- Or (o questo o quello)
-- And (e)
-- Not (non)
-- Uguale 
-I loro corrispettivi in linguaggio di programmazione:
-- ```||```
-- ```&&```
-- ```!=```
-- ```==```
-> **NOTA BENE ==IMPORTANTE==**
-> Il doppio uguale (= =) significa UGUALIANZA 
-> Un uguale singolo (=) significa ASSEGNAZIONE DI UN VALORE
-
-Facciamo degli esempi di comparazione tra proposizioni logiche e in linguaggio di programmazione:
-_Se queste mele pesano meno di 7 o più 10 le compro._
-
-```java
-float pesoMele;
-if(pesoMele < 7 || pesoMele > 10){
-	System.out.println("Compro le mele");
-}
-```
 
 ## Lo switch case
 
@@ -342,7 +420,7 @@ Il ciclo While si presenta come il ciclo più semplice. Il suo scopo è quello d
 
 Vediamo quindi come inserire nel codice un ciclo while e la sua sintassi:
 
-``` cpp
+``` java
 while(condizione){
 	istruzione1;
 	istruzione2;
@@ -378,7 +456,7 @@ Il ciclo è in funzione. Giro numero 9
 
 Notiamo che dopo aver completato il decimo ciclo, il programma è uscito dal ciclo, non eseguendo più le istruzioni contenute nelle parentesi graffe.
 Per verificare questo avvenimento, inseriamo un println dopo il ciclo, per vedere quando il ciclo sarà terminato.
-``` cpp
+``` java
 int a = 0;
 
 while(a < 10){
@@ -516,7 +594,7 @@ int number = 3;
 ### istruzione break
 l'istruzione break serve a fermare un ciclo in un determinato momento. Questo può essere utile per terminare il ciclo quando una condizione è soddisfatta.
 Esempio:
-```cpp
+```java
 for (int i = 1; i < 10; i++)
 {
 	if (i == 4) {
@@ -539,7 +617,7 @@ L'istruzione ```continue``` salta un'iterazione del ciclo. Più specificatamente
 > L'istruzione `continue` ha come effetto l'interruzione dell'iterazione corrente. Il controllo di flusso rimane confinato all'interno del ciclo, ma viene reindirizzato all'iterazione successiva in conseguenza di una circostanza inattesa che invalida o rende superflua l'esecuzione di tale iterazione.
 
 esempio:
-```cpp
+```java
 int i = 0;
 while (i < 10) {
   if (i == 4) {
